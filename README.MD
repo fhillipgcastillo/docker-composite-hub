@@ -1,16 +1,19 @@
 # Docker compose hub
 My own personal docker compose hub collection.
-To start any compose use the docker compose command in the following way
-* docker-compose up -f <docker-filename>.yml
+## Patterns & Requirements
+Each new Dockerfile or docker-compose idea: 
+* Must have it own folder with everything it need inside there.
+* Must have a README.md file with all necesaries notes and documentation
+* The main README.md file mush be updated with a quick documentation about it and should include a link or read more to the new idea documentation/README file
+* If posible includes the docker hub link.
 
 ## pihole-docker-compose
 Is a pi-hole dns server on docker for removing network ads and prevent ads
-docker-compose up -d -f pihole-docker-compose.yml.yml
+```
+cd pi-hole
+docker-compose up -d 
+```
 
-options
-* -d is for detached mode
+Now you can open your browser and open your [localhost](http://localhost:80) or [Your container IP](http://<containerIp>:80) on the port 80.
 
-update
-docker exec pihole pihole updateGravity
-
-https://hub.docker.com/r/pihole/pihole/l
+More info at the [pi-hole readme.md](./pi-hole/README.md)
