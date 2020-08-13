@@ -11,12 +11,12 @@ This image contain only nmap and its dependent packages intalled and it was opti
 docker pull fhillip/nmap
 ```
 
-## Run it
+## Usage
 ```
 docker run -it --name nmap fhillip/nmap
 ```
 
-## Run it as dettached
+## Usage as dettached mode
 ```
 docker run -it -d --name nmap fhillip/nmap
 ```
