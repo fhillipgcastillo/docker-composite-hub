@@ -6,6 +6,9 @@ This image contain only nmap and its dependent packages intalled and it was opti
 2. Then ```alpine:latest``` is used as final stage and nmap and all it dependecies and packages are copied from previeous stage and copied to the final image.
   That way the image can be lightweight and only contain the nmap and sh as available  commands
 
+## build
+`docker build -t fhillip/nmap:latest .`
+
 ## Download image
 ```
 docker pull fhillip/nmap
