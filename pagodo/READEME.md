@@ -176,6 +176,17 @@ thus source from a different IP).
 proxychains4 python pagodo.py -g dorks/all_google_dorks.txt -o [optional/path/to/results.json] -s [optional/path/to/results.txt]
 ```
 
+<<<<<<< Updated upstream
+=======
+list of proxies
+[https://vpnoverview.com/privacy/anonymous-browsing/free-proxy-servers/](https://vpnoverview.com/privacy/anonymous-browsing/free-proxy-servers/)
+
+IP ADDRESS	PORT	COUNTRY/CITY	SPEED	TYPE	LEVEL OF ANONYMITY
+145.239.85.58	9300	Poland	500 ms	SOCKS4, SOCKS5	high
+46.4.96.137	1080	Germany	580 ms	SOCKS5	high
+47.91.88.100	1080	Germany “Frankfurt am Main”	260 ms	SOCKS5	high
+
+>>>>>>> Stashed changes
 Note that this may not appear natural to Google if you:
 
 1) Simulate "browsing" to `google.com` from IP #1

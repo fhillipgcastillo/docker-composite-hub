@@ -1,0 +1,14 @@
+{
+    "dorks": {
+        "site:pastebin.com \"password\"": {
+            "urls_size": 0,
+            "urls": []
+        },
+        "site:pastebin.com \"admin password\"": {
+            "urls_size": 0,
+            "urls": []
+        }
+    },
+    "initiation_timestamp": "2022-09-04T20:09:46.598280",
+    "completion_timestamp": "2022-09-04T20:10:12.829408"
+}
