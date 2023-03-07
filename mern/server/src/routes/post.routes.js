@@ -1,7 +1,6 @@
 import express from 'express';
-import Post from '../models/post.model';
+import Post from '../models/post.model.js';
 const postRouter = express.Router();
-//const Post = require('../models/post.model');
 
 /* Get all Posts */
 postRouter.get('/', (req, res, next) => {

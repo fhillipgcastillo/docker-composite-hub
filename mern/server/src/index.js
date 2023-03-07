@@ -1,8 +1,8 @@
 // server.js
 import bodyParser from 'body-parser';
 import express from 'express';
-import router from '././routes';
-import postRouter from '././routes/post.routes';
+import router from './routes.js';
+import postRouter from './routes/post.routes.js';
 import './config/mongodb.config';
 
 const app = express();
