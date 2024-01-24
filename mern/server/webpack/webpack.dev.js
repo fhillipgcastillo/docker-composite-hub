@@ -8,10 +8,11 @@ module.exports = {
     mode: 'development',
     // externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
     // devServer: {
-    //     contentBase:  path.join(__dirname, 'dist'),
-    //     compress: true,
-    //     hot: true,
-    //     port: 9000
+        // contentBase:  path.join(__dirname, 'dist'),
+        // path: path.resolve(__dirname, 'dist'),
+        // compress: true,
+        // hot: true,
+        // port: 8080
     // },
     plugins: [
         new webpack.ProgressPlugin(),

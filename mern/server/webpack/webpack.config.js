@@ -36,22 +36,30 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
  *
  */
 
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 
 
 
 
 module.exports = {
   mode: 'development',
-  target:'node',
+  entry: './src/index.dev.js',
+  target: 'node',
   watch: false,
+  output: {
+    filename: '[name].js',
+    // filename: '[name].bundle.js',
+    path: path.resolve(__dirname, '../dist'),
+    clean: true,
+    publicPath: '/',
+},
   plugins: [
     new webpack.ProgressPlugin(),
-    new MiniCssExtractPlugin({ filename:'main.[contenthash].css' })
-    	// Other rules..
+    // new MiniCssExtractPlugin({ filename: 'main.[contenthash].css' })
+    // Other rules..
   ],
   resolve: {
-    fallback : {
+    fallback: {
       util: require.resolve("util/"),
       path: require.resolve("path-browserify"),
       crypto: require.resolve("crypto-browserify"),
@@ -99,42 +107,47 @@ module.exports = {
   * }},
   */
   module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      include: [path.resolve(__dirname, 'src')],
-      loader: 'babel-loader'
-    }, {
-      test: /.css$/,
-
-      use: [{
-        loader: MiniCssExtractPlugin.loader
-      }, {
-        loader: "style-loader"
-      }, {
-        loader: "css-loader",
-
-        options: {
-          sourceMap: true
-        }
-      }]
-    }]
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        include: [path.resolve(__dirname, 'src')],
+        loader: 'babel-loader'
+      }
+      // {
+      //   test: /.css$/,
+      //   use: [
+      //     {
+      //       loader: MiniCssExtractPlugin.loader
+      //     },
+      //     {
+      //       loader: "style-loader"
+      //     },
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         sourceMap: true
+      //       }
+      //     }
+        // ]
+      // }
+    ]
   },
 
-  optimization: {
-    minimizer: [new TerserPlugin()],
+  // optimization: {
+    // minimizer: [new TerserPlugin()],
 
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          priority: -10,
-          test: /[\\/]node_modules[\\/]/
-        }
-      },
+    // splitChunks: {
+    //   cacheGroups: {
+    //     vendors: {
+    //       priority: -10,
+    //       test: /[\\/]node_modules[\\/]/
+    //     }
+    //   },
 
-      chunks: 'async',
-      minChunks: 1,
-      minSize: 30000,
-      name: false
-    }
-  }
+    //   chunks: 'async',
+    //   minChunks: 1,
+    //   minSize: 30000,
+    //   name: false
+    // }
+  // }
 }

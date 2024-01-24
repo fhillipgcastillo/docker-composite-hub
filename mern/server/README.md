@@ -33,3 +33,5 @@ Package.json scripts
     "start:dev": "nodemon dist/main.js",
 }
 ```
+
+Dev local run
