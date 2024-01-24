@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-
+const nodeexternals = require("webpack-node-externals");
 /*
  * SplitChunksPlugin is enabled by default and replaced
  * deprecated CommonsChunkPlugin. It automatically identifies modules which
@@ -36,14 +36,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
  *
  */
 
-// const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 
 
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.dev.js',
+  entry: './src/index.js',
   target: 'node',
   watch: false,
   output: {
@@ -55,7 +55,7 @@ module.exports = {
 },
   plugins: [
     new webpack.ProgressPlugin(),
-    // new MiniCssExtractPlugin({ filename: 'main.[contenthash].css' })
+    new MiniCssExtractPlugin({ filename: 'main.[contenthash].css' })
     // Other rules..
   ],
   resolve: {
@@ -132,22 +132,22 @@ module.exports = {
       // }
     ]
   },
+  externals: [nodeexternals()],
+  optimization: {
+    minimizer: [new TerserPlugin()],
 
-  // optimization: {
-    // minimizer: [new TerserPlugin()],
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          priority: -10,
+          test: /[\\/]node_modules[\\/]/
+        }
+      },
 
-    // splitChunks: {
-    //   cacheGroups: {
-    //     vendors: {
-    //       priority: -10,
-    //       test: /[\\/]node_modules[\\/]/
-    //     }
-    //   },
-
-    //   chunks: 'async',
-    //   minChunks: 1,
-    //   minSize: 30000,
-    //   name: false
-    // }
-  // }
+      chunks: 'async',
+      minChunks: 1,
+      minSize: 30000,
+      name: false
+    }
+  }
 }

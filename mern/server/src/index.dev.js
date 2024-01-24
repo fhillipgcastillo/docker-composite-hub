@@ -4,6 +4,9 @@ import express from 'express';
 // import './config/mongodb.config';
 // import postRouter from './routes/post.router';
 
+const webpack = require('webpack');
+
+
 const app = express();
 const PORT = 8080;
 
