@@ -39,13 +39,45 @@ services:
     command: /usr/app/node_modules/.bin/nodemon -L src/index.js
 
   db:
-    image: mongo:3.6.19-xenial
+    image: mongo
+    restart: always
     ports:
-      - 27017:27017
+      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     networks:
       - mern-network
     volumes:
       - mongo-data:/data/db
+    env_file:
+      - ./.env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGODB_INIT_DB}
+  
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    env_file:
+      - ./.env
+    environment:
+      ME_CONFIG_MONGODB_SERVER: db
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: true
+      ME_CONFIG_MONGODB_AUTH_DATABASE: ${MONGODB_DATABASE}
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_PASSWORD}
+      ME_CONFIG_BASICAUTH_USERNAME: ${ME_USERNAME}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${ME_PASSWORD}
+      # ME_CONFIG_REQUEST_SIZE: 100kb
+      ME_CONFIG_SITE_SSL_ENABLED: false
+      # ME_CONFIG_SITE_SSL_CRT_PATH: 
+      # ME_CONFIG_SITE_SSL_KEY_PATH: 
+    networks:
+      - mern-network
+    depends_on:
+      - db
 
 networks:
   mern-network:
